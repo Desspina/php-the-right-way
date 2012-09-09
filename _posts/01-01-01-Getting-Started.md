@@ -1,2 +1,2 @@
-# Getting Started
+# Noţiuni de bază
 
