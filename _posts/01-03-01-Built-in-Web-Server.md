@@ -5,10 +5,10 @@ isChild: true
 
 ## Built-in web server
 
-You can start learning PHP without the hassle of installing and configuring a full-fledged web server (PHP 5.4 required). To start the server, run the following from your terminal in your project's web root:
+Puteţi începe să învăţaţi PHP fără efortul de a instala şi configura un server cu drepturi depline (obligatoriu PHP 5.4). Pentru a porni serverul, rulaţi următoarele din terminal în rădăcina proiectului web.
 
     > php -S localhost:8000
 
-* [Learn about the built-in, command line web server][cli-server]
+* [Învăţaţi despre built-in, command line web server][cli-server]
 
 [cli-server]: http://www.php.net/manual/en/features.commandline.webserver.php
