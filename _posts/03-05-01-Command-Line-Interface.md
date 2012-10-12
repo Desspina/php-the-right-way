@@ -2,23 +2,25 @@
 isChild: true
 ---
 
-## Command Line Interface
+## Linii de comandă (Command Line Interface)
 
-PHP was created primarily to write web applications, but it's also useful for scripting command line interface (CLI) programs, too. Command line PHP programs can help you automate common tasks like testing, deployment, and application administrativia.
+PHP a fost creat în primul rând pentru a scrie aplicaţii web, dar este, de asemenea, folositor pentru a scrie şi linii de comandă (CLI). Liniile de comandă PHP pot ajuta la automatizarea sarcinilor precum testare, implementarea şi aplicare. 
 
-CLI PHP programs are powerful because you can use your app's code directly without having to create and secure a web GUI for it. Just be sure not to put your CLI PHP scripts in your public web root!
+Programele CLI PHP sunt puternice deoarece îţi poţi folosi codul aplicaţiei fără a fi nevoie să creezi şi să securizezi un GUI web pentru el. Doar asiguraţi-vă că nu faceţi public scriptul CLI PHP!
 
-Try running PHP from your command line:
+încercaţi să rulaţi PHP din linia de comandă:
+
 
 {% highlight bash %}
 > php -i
 {% endhighlight %}
 
-The `-i` option will print your PHP configuration just like the [`phpinfo`][phpinfo] function. 
+Opţiunea `-i` va imprima configuraţia PHP exact ca funcţia [`phpinfo`][phpinfo].
 
-The `-a` option provides an interactive shell, similar to ruby's IRB or python's interactive shell. There are a number of other useful [command line options][cli-options], too.
+Opţiunea `-a` oferă un shell interactiv, similar cu IRB al ruby sau shell-ul interactiv al python. Există un număr de alte [command line options][cli-options] folositoare. 
 
-Let's write a simple "Hello, $name" CLI program. To try it out, create a file named `hello.php`, as below.
+Să scriem un program simplu "Hello, $name" CLI. Pentru a încerca, creaţi un fişier numit `hello.php`, ca şi cel ce urmează.
+
 
 {% highlight php %}
 <?php
@@ -30,11 +32,12 @@ $name = $argv[1];
 echo "Hello, $name\n";
 {% endhighlight %}
 
-PHP sets up two special variables based on the arguments your script is run with. [`$argc`][argc] is an integer variable containing the argument *count* and [`$argv`][argv] is an array variable containing each argument's *value*. The first argument is always the name of your PHP script file, in this case `hello.php`.
+PHP stabilește două variabile speciale bazate pe argumente, iar script-ul se execută cu. [`$argc`][argc] este o variabilă integer ce conţine argumentul *count* şi [`$argv`][argv] este o variabilă array ce conţine *valoarea* fiecărui argument. Primul argument este întotdeauna numele fişierului script PHP, în acest caz `hello.php`.
 
-The `exit()` expression is used with a non zero number to let the shell know that the command failed. Commonly used exit codes can be found [here][exit-codes]
+Expresia `exit()` este folosită cu un număr non zero pentru a permite shell să detecteze eşuarea comenzii. Codurile utilizate în mod obişnuit pot fi găsite [aici][exit-codes]
 
-To run our script, above, from the command line:
+Pentru a rula scriptul nostru de mai sus, din linia de comandă:
+
 
 {% highlight bash %}
 > php hello.php
@@ -44,8 +47,8 @@ Hello, world
 {% endhighlight %}
 
 
- * [Learn about running PHP from the command line][php-cli]
- * [Learn about setting up Windows to run PHP from the command line][php-cli-windows]
+ * [Învăţaţi despre rularea PHP din linia de comandă][php-cli]
+ * [Învăţaţi despre setarile Windows pentru a rula PHP din linia de comandă][php-cli-windows]
 
 [phpinfo]: http://php.net/manual/en/function.phpinfo.php
 [cli-options]: http://www.php.net/manual/en/features.commandline.options.php
