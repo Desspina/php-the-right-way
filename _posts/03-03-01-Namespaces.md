@@ -2,18 +2,19 @@
 isChild: true
 ---
 
-## Namespaces
+## Namespace-uri
 
-As mentioned above, the PHP community has a lot of developers creating lots of code. This means that one library's PHP code may use the same class name as another library. When both libraries are used in the same namespace, they collide and cause trouble.
+Cum am menţionat mai sus, comunitatea PHP este formată dintr-o mulţume de dezvoltatori care crează cod. Asta înseamnă că biblioteca PHP poate folosi acelaşi nume al clasei ca şi altă bibliotecă. Când ambele biblioteci sunt folosite în acelaşi namespace, ele se ciocnesc şi cauzează probleme. 
 
-_Namespaces_ solve this problem. As described in the PHP reference manual, namespaces may be compared to operating system directories that _namespace_ files; two files with the same name may co-exist in separate directories. Likewise, two PHP classes with the same name may co-exist in separate PHP namespaces. It's as simple as that.
+_Namespace-urile_ rezolvă această problemă. Aşa cum este descris în manualul de referinţă al PHP, namespace-urile pot fi comparate cu acele fişiere _namespace_ ale directoarelor sistemului de operare; două fişiere cu acelaşî nume pot co-exista în directoare separate. De asemenea, două clase PHP cu acelaşi nume pot co-exista în namespace-uri PHP separate. Este foarte simplu. 
 
-It is important for you to namespace your code so that it may be used by other developers without fear of colliding with other libraries.
+Este important să-ţi numeşti codul pentru a putea fi folosit de alţi dezvoltatori fără teama de a produce probleme cu alte biblioteci.
 
-One recommended way to use namespaces is outlined in [PSR-0][psr0], which aims to provide a standard file, class and namespace convention to allow plug-and-play code.
+Un mod recomandat de a folosi namespace-urile este indicat în [PSR-0][psr0], care îşi propune să ofere un fişier standard, o convenţie între clasă şi namespace ce permit codul plug_and_play. 
 
-* [Read about Namespaces][namespaces]
-* [Read about PSR-0][psr0]
+
+* [Citeşte despre Namespaces][namespaces]
+* [Citeşte despre PSR-0][psr0]
 
 [namespaces]: http://php.net/manual/en/language.namespaces.php
 [psr0]: https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-0.md
