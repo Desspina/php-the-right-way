@@ -2,33 +2,25 @@
 title: Databases
 ---
 
-# Databases
+# Bazele de date
 
-Many times your PHP code will use a database to persist information. You have a few options to connect and interact
-with your database. The recommended option _until PHP 5.1.0_ was to use native drivers such as [mysql][mysql], [mysqli][mysqli], [pgsql][pgsql], etc.
+Adeseori, codul tău PHP va folosi o bază de date pentru a păstra informaţia. Ai câteva opţiuni pentru a te conecta şi a interacţiona cu baza ta de date. Opţiune recomandată _pănă la PHP 5.1.0_ era să foloseşti divere autohtone precum [mysql][mysql], [mysqli][mysqli], [pgsql][pgsql], etc.
 
-Native drivers are great if you are only using ONE database in your application, but if, for example, you are using MySQL and a little bit of MSSQL,
-or you need to connect to an Oracle database, then you will not be able to use the same drivers. You'll need to learn a brand new API for each
-database &mdash; and that can get silly.
+Driverele native sunt grozave dacă foloseşti doar o bază de date în aplicaţia ta, dar dacă, de exemplu, foloseşti MySQL şi un pic de MSSQL, vei fi nevoie să te conectezi la o bază de date Oracle şi apoi nu vei fi capabil să foloseşti aceleaşi drivere. Va trebui să înveţi un nou API pentru fiecare bază de date şi asta poate fi caraghios. 
 
-As an extra note on native drivers, the mysql extension for PHP is no longer in active development, and the official status since PHP 5.4.0 is
-"Long term deprecation". This means it will be removed within the next few releases, so by PHP 5.6 (or whatever comes after 5.5) it may well be gone. If you are using `mysql_connect()` and `mysql_query()` in your applications then you will be faced with a rewrite at some point down the
-line, so the best option is to replace mysql usage with mysqli or PDO in your applications within your own development shedules so you won't
-be rushed later on. _If you are starting from scratch then absolutely do not use the mysql extension: use the [MySQLi extension][mysqli], or use PDO._
+Ca o notă în plus pentru driverele native, extensia mysql pentru PHP nu mei este disponibilă în programare şi un status oficial de la PHP 5.4.0 este "Amortizare pe termen lung". Asta înseamnă că va fi înlăturată în următoarele versiuni, aşa că la PHP 5.6 (sau ce ar urma după 5.5) s-ar putea să nu mai fie. Dacă foloseşti `mysql_connect()` şi `mysql_query()` în aplicaţie atunci te cei confrunta cu o rescriere la un moment dat, aşa că cea mai bună opţiune este să înlocuieşti în aplicaţie folosirea mysql cu mysqli sau PDO pentru a nu fi obligat să vă grăbiţi apoi. _Dacă porneşti de la zero atunci nu folosi extensii mysql: foloseşte [extensii MySQLi ][mysqli], sau PDO._
 
-* [PHP: Choosing an API for MySQL](http://php.net/manual/en/mysqlinfo.api.choosing.php)
+
+* [PHP: Alegerea unul API pentru MySQL](http://php.net/manual/en/mysqlinfo.api.choosing.php)
 
 ## PDO
 
-PDO is a database connection abstraction library &mdash;  built into PHP since 5.1.0 &mdash; that provides a common interface to talk with
-many different databases. PDO will not translate your SQL queries or emulate missing features; it is purely for connecting to multiple types
-of database with the same API.
+PDO este o bază de date conectată la biblioteci abstracte construită în PHP încă de la versiunea 5.1.0 şi care oferă o interfaţă obişnuită ce comunică cu diferite baze de date. PDO nu va traduce interogările SQL şi nu va itima caracteristici ce lipsesc; pur şi simplu te conectează cu mai multe baze de date cu acelaşi API. 
 
-More importantly, `PDO` allows you to safely inject foreign input (e.g. IDs) into your SQL queries without worrying about database SQL injection attacks.
-This is possible using PDO statements and bound parameters.
+Şi mai important, `PDO` îţi permite să intri în siguranţă în interogările SQL fără să te temi de atacurile asupra bazei de date SQL. 
+Aceasta este posibil pe baza declaraţiilor şi parametrilor PDO
 
-Let's assume a PHP script receives a numeric ID as a query parameter. This ID should be used to fetch a user record from a database. This is the `wrong`
-way to do this:
+Să presupunem că un script PHP primeşte un ID numeri ca un parametru de interogare. Acest ID ar trebui folosit pentru a înregistra un utilizator într-o bază de date. Acesta e un mod `greşit` de a proceda: 
 
 {% highlight php %}
 <?php
@@ -36,10 +28,7 @@ $pdo = new PDO('sqlite:users.db');
 $pdo->query("SELECT name FROM users WHERE id = " . $_GET['id']); // <-- NO!
 {% endhighlight %}
 
-This is terrible code. You are inserting a raw query parameter into a SQL query. This will get you hacked in a
-heartbeat. Just imagine if a hacker passes in an inventive `id` parameter by calling a URL like
-`http://domain.com/?id=1%3BDELETE+FROM+users`.  This will set the `$_GET['id']` variable to `id=1;DELETE FROM users`
-which will delete all of your users! Instead, you should sanitize the ID input using PDO bound parameters.
+Iată un cod greşit. Introduci un paramentru de interogare brut într-o cerere SQL. Vei fi piratat într-o clipită. Imaginează-ţi că un hacker trece cu un `id` inventiv prin apelarea unul URL precum `http://domain.com/?id=1%3BDELETE+FROM+users`. Aceasta va seta variabila `$_GET['id']`în id=1;DELETE FROM users` care va şterge toţi userii! În schimb, va trebui să ştergi ID-ul folosing parametri referitori la PDO.
 
 {% highlight php %}
 <?php
@@ -49,27 +38,22 @@ $stmt->bindParam(':id', $_GET['id'], PDO::PARAM_INT); //<-- Automatically saniti
 $stmt->execute();
 {% endhighlight %}
 
-This is correct code. It uses a bound parameter on a PDO statement. This escapes the foreign input ID before it is introduced to the
-database preventing potential SQL injection attacks.
+Acesta este codul corect. Foloseşte parametri legaţi de PDO. Asta scapă ID-ul de intrarea externă înainte de a fi introdus în baza de date şi previne posibilele atacuri SQL.
 
-* [Learn about PDO][1]
 
-You should also be aware that database connections use up resources and it was not unheard-of to have resources
-exhausted if connections were not implicitly closed, however this was more common in other languages. Using PDO you
-can implicitly close the connection by destroying the object by ensuring all remaining references to it are deleted,
-ie. set to NULL.  If you don't do this explicitly, PHP will automatically close the connection when your script ends
-unless of course you are using persistent connections.
+* [Mai multe despre PDO][1]
 
-* [Learn about PDO connections][5]
+Ar trebui de asemenea să fiţi atenţi la conexiunile bazei de date care folosesc resurse şi nu s0a întâmplat să se epuizeze resursele dacă conexiunile nu au fost închise implicit, aceasta fiind mai întâlnită în alte limbaje. Folosind PDO, conexiunile de pot inchide implicit prin eliminarea obiectului prin care se făcea trimiterea, de exemplu, setându-l ca fiind NULL. Dacă nu faci asta explicit, PHP va închide automat conexiunea când script-ul se termină
+cu excepția cazului în care, desigur, utilizați conexiuni persistente.
 
-## Abstraction Layers
 
-Many frameworks provide their own abstraction layer which may or may not sit on top of PDO.  These will often emulate features for
-one database system that another is missing form another by wrapping your queries in PHP methods, giving you actual database abstraction.
-This will of course add a little overhead, but if you are building a portable application that needs to work with MySQL, PostgreSQL and
-SQLite then a little overhead will be worth it the sake of code cleanliness.
+* [Mai multe despre conexiunile PDO][5]
 
-Some abstraction layers have been built using the PSR-0 namespace standard so can be installed in any application you like:
+## Nivele de abstractizare
+
+Multe cadre oferă propriile nivele de abstractizare care ar putea sau nu să fie deasupra PDO. Acestea vor imita adesea caracteristici ale unei baze de date ce lipsesc în alta prin împachetarea interogărilor în metode PHP. 
+Asta vă va da un pic de bătaie de cap dar dacă construiţi o aplicaţie portabilă ce necesită lucrul cu MySQL, PostgreSQL şi SQLite, atunci aceasta bătaie de cap va merita de dragul unul cod curat. 
+Unele nivele de abstractizare au fost construite rin folosire namespace-ului standard PSR-0 şi pentru a putea fi intalate în orice aplicaţie: 
 
 * [Doctrine2 DBAL][2]
 * [ZF2 Db][4]
