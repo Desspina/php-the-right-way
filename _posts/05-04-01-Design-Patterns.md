@@ -2,15 +2,11 @@
 isChild: true
 ---
 
-## Design Patterns
+## Modele de design
 
-When you are building your application it is helpful to use common patterns in your code and common patterns for the
-overall structure of your project. Using common patterns is helpful because it makes it much easier to manage your code
-and lets other developers quickly understand how everything fits together.
+Când îţi construieşti aplicaţia este bine să foloseşti modele obişnuite în cod şi pe întreaga structură a proiectului. Folosirea de modele obişnuite este folositoare deoarece managerierea codului este mult mai uşoară şi permite altor dezvoltatori să înţeleagă mai uşor cum ai procedat. 
 
-If you use a framework then most of the higher level code and project structure will be based on that framework, so a
-lot of the pattern decisions are made for you. But it is still up to you to pick out the best patterns to follow in the
-code you build on top of the framework. If, on the other hand, you are not using a framework to build your application
-then you have to find the patterns that best suit the type and size of application that you're building.
+Dacă foloseşti un cadru, cea mai mare parte a cosului se va baza pe acest cadru, astfel încât o mare parte asupra deciziilor în privinţa patternului sunt luate pentru tine. Dar tot tu vei decide care este cel mai bun model de urmat în codul pe care tu îl scrii. Pe de altă parte, dacă foloseşti un cadru pentru a-ţi construi aplicaţia atunci va trebui să găseşti modelul care se potriveşte cel mai bine mărimii şi felului aplicaţiei tale. 
 
-* Continue reading on [Design Patterns](/pages/Design-Patterns.html)
+
+* Continuă să citeşti despre [Modelele de design](/pages/Design-Patterns.html)
