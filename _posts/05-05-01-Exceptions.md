@@ -2,22 +2,17 @@
 isChild: true
 ---
 
-## Exceptions
+## Excepţii
 
-Exceptions are a standard part of most popular programming languages, but they are often overlooked by PHP programmers. 
-Languages like Ruby are extremely Exception heavy, so whenever something goes wrong such as a HTTP request failing, or 
-a DB query goes wrong, or even if an image asset could not be found, Ruby (or the gems being used) will throw an 
-exception to the screen meaning you instantly know there is a mistake. 
+Excepţiile alcătuiesc o parte standard a celor mai multe limbaje de programare, dar ele sunt adesea trecute cu vederea de către programatorii PHP.
+Limbaje precum Ruby sunt excepţii de luat în seamnă, aşa că ori de câte ori ceva nu merge bine cum ar fi o eşuarea unei cereri HTTP sau o interogare DB nu merge bine sau o imagine nu poate fi găsită, Ruby (sau orice altceva este folosit) vor indica o excepţie pe ecran pentru ca tu să-ţi dai seama că undeva există o greşeală. 
 
-PHP itself is fairly lax with this, and a call to `file_get_contents()` will usually just get you a `FALSE` and a warning.
-Many older PHP frameworks like CodeIgniter will just return a false, log a message to their proprietary logs and maybe 
-let you use a method like `$this->upload->get_error()` to see what went wrong. The problem here is that you have to go 
-looking for a mistake and check the docs to see what the error method is for this class, instead of having it made extremely 
-obvious.
+Inclusiv PHP este foar permisiv cu asta, şi te anunţă că `file_get_contents()` vei obţine un `FALSE` şi o atenţionare.
 
-Another problem is when classes automatically throw an error to the screen and exit the process. When you do this you 
-stop another developer from being able to dynamically handle that error. Exceptions should be thrown to make a developer aware 
-of an error, then they can choose how to handle this. E.g:
+Mai multe cadre PHP mai vechi precum CodeIgniter vor indica un fals, un mesaj de logare în istoricul logărilor şi poate vor permite folosirea unei metode ca `$this->upload->get_error()` pentru a detecta ce nu a mers bine. Problema e că trebuie să căutaţi greşeala şi că verificaţi documentele pentru a vedea care este metoda erorii pentru acestă clasă şi pentru a o evidenţia.
+
+O altă problemă este atunci când clasele dau automat o eroare şi ies din program. Când se întâmplă asta, opriţi alt dezvoltator să se ocupe de eroare . Excepţiile ar trebui să existe pentru a face  un dezvoltator conştient de existenţa unei erori şi pentru a putea să se ocupe de ea. De exemplu: 
+
 
 {% highlight php %}
 <?php
@@ -42,22 +37,21 @@ catch(Fuel\Email\SendingFailedException $e)
 
 ### SPL Exceptions
 
-An Exception by default has no meaning and the most common to give it meaning is by setting its name:
+O excepție în mod implicit nu are nici un sens și pentru a-i da sens trebui setat numele acesteia:
 
 {% highlight php %}
 <?php
 class ValidationException extends Exception {}
 {% endhighlight %}
 
-This means you can add multiple catch blocks and handle different Exceptions differently. This can lead to 
-the creation of a <em>lot</em> of custom Exceptions, some of which could have been avoided using the SPL Exceptions 
-provided in the [SPL extension][splext]. 
+Acest lucru înseamnă că puteți adăuga mai multe capturi și să gestionaţi în mod diferit excepţiile. Asta poate duce la crearea unei <em>mulţimi</em> de Excepţii, unele dintre ele putând fi evitate folosind SPL Exceptions furnizate în [SPL extension][splext].
 
-If for example you use the `__call()` Magic Method and an invalid method is requested then instead of throwing a standard 
-Exception which is vague, or creating a custom Exception just for that, you could just `throw new BadFunctionCallException;`.
+Dacă, de exemplu, folosiţi `__call()` Magic Method şi o metodă nevalidă este obligatorie, atunci în loc să adăugaţi o excepţie standard care este vagă, sau sa creaţi o excepţie personalizată, puteţi doar `throw new BadFunctionCallException;`.
 
-* [Read about Exceptions][exceptions]
-* [Read about SPL Exceptions][splexe]
+
+
+* [Citiţi despre Excepţii][exceptions]
+* [Citiţi despre SPL Exceptions][splexe]
 * [Nesting Exceptions In PHP][nesting-exceptions-in-php]
 * [Exception Best Practices in PHP 5.3][exception-best-practices53]
 
