@@ -2,11 +2,9 @@
 isChild: true
 ---
 
-## The Basics
+## Bazele
 
-PHP is a vast language that allows coders of all levels the ability to produce code not only quickly, but efficiently. 
-However while advancing through the language, we often forget the basics that we first learnt (or overlooked) in favor 
-of short cuts and/or bad habits. To help combat this common issue, this section is aimed at reminding coders of the 
-basic coding practices within PHP.
+PHP este un limbaj vast care permite coderilor de orice nivel nu doar să scrie repede ci şi eficient. 
+Oricum, pe măsură ce înveţi mai multe despre acest limbaj, uiţi noţiunile de bază pe care le-ai învăţat în favoarea căilor mai scurte sau a obiceiurilor proaste. Pentru a înlătura această problemă des intâlnită, acestă secţiune îşi propune să reamintească programatorilor bazele scrierii codurilor în PHP. 
 
-* Continue reading on [The Basics](/pages/The-Basics.html)
+* Continuaţi să citiţi [Bazele](/pages/The-Basics.html)
