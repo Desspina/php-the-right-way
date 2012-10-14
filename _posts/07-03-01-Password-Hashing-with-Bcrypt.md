@@ -2,18 +2,18 @@
 isChild: true
 ---
 
-## Password Hashing with Bcrypt
+## Hash-uirea parolelor cu Bcrypt
 
-Eventually everyone builds a PHP application that relies on user login. Usernames and (hashed) passwords are stored in a database and later used to authenticate users upon login.
+Aplicaţiile PHP construite se bazează pe autentificarea cu user. Usernameul şi parola sunt stocate într-o bază de date şi mai apoi foloste pentru autentificarea utilizatorilor la logare. 
 
-It is important that you properly _hash_ passwords that are stored in a database. If passwords are not hashed, and your database is hacked or accessed by an unauthorized third-party, all user accounts are now compromised.
+Este important să _hash-uiţi_ în mod corespunzător parolele stocate în baza de date. Dacă parolele nu sunt hash-uite, şi baza de date este atacată sau accesată de un terţ neautorizat, toate conturilor userilor sunt compromise. 
 
-**Hash passwords with Bcrypt**. It's super simple, and (for all intents and purposes) Bcrypt makes it impossible for someone to reverse-engineer the plain-text version of a password should the database be compromised.
+**Hash-uiţi parolele cu Bcrypt** Este foarte simplu, şi (cu orice intenţie sau scop) Brypt face imposibil cuiva să inverseze textul simplu al unei parole, iar baza de date nu este compromisă. 
 
-There are several Bcrypt libraries for PHP that you may use.
+Există câteva biblioteci Bcrypt pentru PHP pe care ai putea să le foloseşti. 
 
-* [Read "How to Safely Store a Password" by Coda Hale][3]
-* [Use Bcrypt with PHPass][4]
+* [Citiţi "How to Safely Store a Password" de Coda Hale][3]
+* [Folosiţi Bcrypt cu PHPass][4]
 
 [3]: http://codahale.com/how-to-safely-store-a-password/
 [4]: http://www.openwall.com/phpass/
