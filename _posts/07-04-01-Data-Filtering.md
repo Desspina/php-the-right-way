@@ -2,60 +2,43 @@
 isChild: true
 ---
 
-## Data Filtering
+## Filtrarea datelor
 
-Never ever (ever) trust foreign input introduced to your PHP code. Always sanitize and validate
-foreign input before using it in code. The `filter_var` and `filter_input` functions can sanitize text and validate text formats (e.g.
-email addresses).
+Niciodată, dar niciodată să nu aveţi încredere într-o intrare externă introdusă în codul PHP. Întotdeauna curăţaţi si validaţi input-urile externe înainte de a le folosi în cod. Funcţiile `filter_var` and `filter_input` pot curăţa şi valida textul (exp. Adresele de email) 
 
-Foreign input can be anything: `$_GET` and `$_POST` form input data, some values in the `$_SERVER`
-superglobal, and the HTTP request body via `fopen('php://input', 'r')`. Remember, foreign input is not
-limited to form data submitted by the user. Uploaded and downloaded files, session values, cookie data,
-and data from third-party web services are foreign input, too.
+Input extern poate fi orice: formulare `$_GET` şi `$_POST`, unele valori în `$_SERVER` şi cererile HTTP via `fopen('php://input', 'r')`. Reţineri, intrările străine nu sunt limitate de datele prezentate în formularul de utilizator. Fişierele încărcate şi descărcate, valorile sesiunii, datele cookie şi datele din serviciile web ale terţilor sunt intrări strâine de asemene. 
 
-While foreign data can be stored, combined, and accessed later, it is still foreign input. Every
-time you process, output, concatenate, or include data in your code, ask yourself if
-the data is filtered properly and can it be trusted.
+În timp ce datele externe pot fi stocate, combinate şi accesate ulterior ele încă reperezintă un input exterior. Cu fiecare procesare, ieşire, îmbinare sau includere a datelor în cod, se pune întrebarea dacă datele sunt filtrate corespunzător şi pot fi de încredere.
 
-Data may be _filtered_ differently based on its purpose. For example, when unfiltered foreign input is passed
-into HTML page output, it can execute HTML and JavaScript on your site! This is known as Cross-Site
-Scripting (XSS) and can be a very dangerous attack. One way to avoid XSS is to sanitize all HTML tags
-in the input by removing tags or escaping them into HTML entities.
+Datele pot fi _filtrate_ în mod diferit bazându-se pe propriul scop. De exemplu, când un input străin este plasat într-o pagină de ieşire HTML, poat eexecuta HTML şi JavaScript pe site! Aceasta este cunoscută sub numele de Cross-Site Scripting (XSS) şi poate reprezenta un atac periculos. O modalitate de a evita XSS este de a curăţa toate tag-urile HTML din intrare prin îndepărtarea tag-urilor.
 
-Another example is passing options to be executed on the command line. This can be extremely dangerous
-(and is usually a bad idea), but you can use the built-in `escapeshellarg` function to sanitize the executed
-command's arguments.
+Un alt exemplu este executarea opţiunii în linia de comandă. Asta poate fi foarte periculos (şi de obicei nu este o idee prea bună), dar puteţi folosi funcţia built-in `escapeshellarg` pentru a curăţa argumentele comenzii executate. 
 
-One last example is accepting foreign input to determine a file to load from the filesystem. This can be exploited by
-changing the filename to a file path. You need to remove "/", "../", [null bytes][6], or other characters from the file path so it can't
-load hidden, non-public, or sensitive files.
+Un ultim exemplu este acceptarea input-ului străin pentru a determina un fişier să se încarce din sistemul de fişiere. Acesta poate fi executat prin schimbarea numelui fişierului într-un fişier cale. Trebuie să înlăturaţi "/", "../", [null bytes][6] sau alte caratere din fişîerul cale pentru a putea fi încărcat non-public sau ca fişier sensibil. 
 
-* [Learn about data filtering][1]
-* [Learn about `filter_var`][4]
-* [Learn about `filter_input`][5]
-* [Learn about handling null bytes][6]
 
-### Sanitization
+* [Citeşte despre filtrarea datelor][1]
+* [Citeşte despre `filter_var`][4]
+* [Citeşte despre `filter_input`][5]
+* [Citeşte despre manevrarea bytes-lor nuli][6]
 
-Sanitization removes (or escapes) illegal or unsafe characters from foreign input.
+### Igienizarea
 
-For example, you should sanitize foreign input before including the input in HTML or inserting it
-into a raw SQL query. When you use bound parameters with [PDO](#databases), it will
-sanitize the input for you.
+Igienizarea elimină (sau îndepărtează) caractere ilegale sau nesigure de la un input străin.
 
-Sometimes it is required to allow some safe HTML tags in the input when including it in the HTML
-page. This is very hard to do and many avoid it by using other more restricted formatting like
-Markdown or BBCode, although whitelisting libraries like [HTML Purifier][html-purifier] exists for
-this reason.
+De exemplu, trebuie să curăţaţi inputurile străine înainte de a include input-ul in HTML sau să-l inseraţi în interogări SQL brute. Când utilizați parametrii legați cu [PDO](#databases), acesta va curăţă input-ul pentru dvs.
 
-[See Sanitization Filters][2]
+Uneori este necesar să se permită intrarea unor tag-uri HTML sigure când se introduc in pagini HTML. Aceast lucru este destul de greu de făcut şi mulţi se feresc prin folosirea altor formatări mult mai restrictive precum Markdown asau BBCode, dar şi biblioteci whitelisting precum [HTML Purifier][html-purifier].
 
-### Validation
+[Vezi filtrele de igienizare][2]
 
-Validation ensures that foreign input is what you expect. For example, you may want to validate an
-email address, a phone number, or age when processing a registration submission.
 
-[See Validation Filters][3]
+### Validarea 
+
+Validarea asigură că input-ul străin este exact aşa cum te aştepţi să fie. De exemplu, ai putea dori să validezi o adresă de email, un număr de telefon sau o vârstă în timpul procesului de înregistrare.
+
+
+[Vezi filtrele de validare][3]
 
 [1]: http://www.php.net/manual/en/book.filter.php
 [2]: http://www.php.net/manual/en/filter.filters.sanitize.php
